@@ -1,20 +1,28 @@
 # Modular MikroTik RouterOS configuration script for CCR2004-1G-12S+2XS
-# Додано: DNS-сервер + дозвіл DNS-запитів на всіх VLAN інтерфейсах
 
 # ====================== What this script configures: ======================
-# 1. Встановлює hostname та timezone для роутера.
-# 2. Налаштовує NTP-клієнт для синхронізації часу з серверами.
-# 3. Встановлює DNS-сервери для розв'язування імен.
-# 4. Створює бридж для VLAN trunking з увімкненим VLAN-фільтруванням.
-# 5. Додає всі trunk порти (SFP+ та XS) до бриджу в режимі trunk.
-# 6. Створює VLAN інтерфейси на бриджі та призначає IP-адреси для кожного VLAN.
-# 7. Призначає IP-адресу для management інтерфейсу (ether1).
-# 8. Створює interface-list "LAN-VLANS" для всіх VLAN інтерфейсів (для зручного використання в firewall).
-# 9. Увімкнює DNS-сервер на роутері з дозволом remote-запитів.
-# 10. Налаштовує базовий firewall: дозволяє access тільки з management, логування unauthorized, дозвіл DNS-запитів з VLANів, inter-VLAN routing.
-# 11. Вимикає непотрібні сервіси (telnet, ftp тощо) для безпеки.
-# 12. Налаштовує логування: remote на syslog-сервер для певних топіків, локальне для firewall.
-# 13. Налаштовує SNMP: увімкнення, community, traps на SNMP-сервер.
+# 1. Sets the router hostname and timezone.
+# 2. Configures NTP client for time synchronization with NTP servers.
+# 3. Configures DNS servers for name resolution.
+# 4. Creates a bridge for VLAN trunking with VLAN filtering enabled.
+# 5. Adds all trunk ports (SFP+ and XS) to the bridge in trunk mode.
+# 6. Creates VLAN interfaces on the bridge and assigns IP addresses to each VLAN.
+# 7. Assigns an IP address to the management interface (ether1).
+# 8. Creates interface list "LAN-VLANS" containing all VLAN interfaces (for convenient reference in firewall rules).
+# 9. Enables the DNS server on the router and allows remote requests.
+# 10. Configures basic firewall:
+#     - Allows management access only from the management interface
+#     - Logs unauthorized access attempts
+#     - Allows DNS queries from VLAN interfaces
+#     - Enables inter-VLAN routing
+# 11. Disables unnecessary services (telnet, ftp, etc.) for security hardening.
+# 12. Configures logging:
+#     - Forwards selected topics to a remote syslog server
+#     - Enables local logging for firewall actions
+# 13. Configures SNMP:
+#     - Enables SNMP service
+#     - Sets SNMP community string
+#     - Configures SNMP traps destination
 # =====================================================================
 
 # ====================== Configuration Variables ======================
